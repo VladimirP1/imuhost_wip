@@ -1,4 +1,5 @@
 #include "hid.h"
+#include <hidapi.h>
 
 HID::HID()
 {

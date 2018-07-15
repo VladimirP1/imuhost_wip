@@ -1,9 +1,11 @@
 #pragma once
-#include <hidapi.h>
 #include <string>
-#include <gsl-lite.hpp>
+#include "gsl-lite.hpp"
 
 using namespace std;
+
+struct hid_device_;
+typedef struct hid_device_ hid_device;
 
 class HID_exception
 {
