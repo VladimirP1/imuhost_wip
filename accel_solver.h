@@ -17,9 +17,9 @@ class AccelSolver
     double r(arma::Col<double> point) {
         arma::Col<double> ret(meas.size());
         for(size_t i = 0; i < meas.size(); i++) {
-            ret[i] =  term(meas[i][0], point[0], point[3])
-                    + term(meas[i][1], point[1], point[4])
-                    + term(meas[i][2], point[2], point[5])
+            ret[i] =  term(meas[i][0] / 9.8, point[0] / 9.8, point[3])
+                    + term(meas[i][1] / 9.8, point[1] / 9.8, point[4])
+                    + term(meas[i][2] / 9.8, point[2] / 9.8, point[5])
                     - 1;
         }
         return arma::dot(ret, ret);
@@ -35,7 +35,7 @@ class AccelSolver
         return ret;
     }
     arma::Col<double> step(arma::Col<double> b_k) {
-        return b_k - 0.005 * gradient(b_k);
+        return b_k - gamma * gradient(b_k);
     }
 public:
     AccelSolver(vector<arma::Col<double>> meas) : meas(meas) {}

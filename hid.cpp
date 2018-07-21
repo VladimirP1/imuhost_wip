@@ -28,7 +28,7 @@ int HID::read(gsl::span<uint8_t> data) {
     if(!dev_handle) {
         throw HID_exception("Attempt an operation on a closed device");
     }
-    int res = hid_read_timeout(dev_handle, &data[0], data.size(), 100);
+    int res = hid_read_timeout(dev_handle, &data[0], data.size(), 1000);
     if(res < 0) {
         throw HID_exception("Read error");
     }
